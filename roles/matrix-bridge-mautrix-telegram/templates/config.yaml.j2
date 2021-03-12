@@ -183,10 +183,10 @@ bridge:
     # application service.
     encryption:
         # Allow encryption, work in group chat rooms with e2ee enabled
-        allow: false
+        allow: true
         # Default to encryption, force-enable encryption in all portals the bridge creates
         # This will cause the bridge bot to be in private chats for the encryption to work properly.
-        default: false
+        default: true
         # Database for the encryption data. Currently only supports Postgres and an in-memory
         # store that's persisted as a pickle.
         # If set to `default`, will use the appservice postgres database
@@ -196,6 +196,10 @@ bridge:
         #   Pickle:   pickle:///filename.pickle
         #   Postgres: postgres://username:password@hostname/dbname
         database: default
+        key_sharing:
+            # Enable key sharing? If enabled, key requests for rooms where users are in will be fulfilled.
+            # You must use a client that supports requesting keys from other users to use this feature.
+            allow: false
 
     # Whether or not to explicitly set the avatar and room name for private
     # chat portal rooms. This will be implicitly enabled if encryption.default is true.
